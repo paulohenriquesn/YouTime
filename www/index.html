@@ -8,12 +8,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
   </head>
   <style type="text/css">
-
   * {margin:0}
   body {
     background-color: #17181b;
   }
-
   ::-webkit-scrollbar {
     width:10px;
   }
@@ -23,39 +21,25 @@
   ::-webkit-scrollbar-thumb {
       background: #f53d7a;
   }
-
   .__video h3 {
     color:white;
   }
-
-  #videos ul {
-
-  }
-
   #videos li {
       padding:10px 10px;
       display: inline-block;
       list-style: none;
   }
-
   </style>
   <body>
-
     <article class="content">
-
       <nav id="headerInfo">
         <hgroup>
           <h1>YouTime - 0.01</h1>
         </hgroup>
       </nav>
-
       <hr>
-
-
-
       <div id="videos">
         <ul>
-
           <li>
             <nav class="__video">
               <img src="https://scontent.fcgh3-1.fna.fbcdn.net/v/t1.15752-9/40921000_239869840008973_2347435047306395648_n.png?_nc_cat=0&_nc_eui2=AeHI2V62dyHtEZOiQXYMTLKqKnecWBPKrnVI4xjX-HMvDafzdNi9GTbGW07fQdfQ0crts2qtM91e3n9Z7c6f6ny2b1QTPiYzF7R0iZV0kG147Q&oh=5313d0e406ba59c9e1c694b238d4504e&oe=5C33BE40" width="231" height="332"/>
@@ -68,26 +52,7 @@
 
         </ul>
       </div>
-
     </article>
-
-
-
   </body>
-
-  <script>
-  var electron = require('electron');
-  function navigate(url)
-  {
-  var window = electron.remote.getCurrentWindow();
-  window.loadURL(url);
-  }
-
-  const execSync = require('child_process').execSync;
-  DownloadVideo = (link,title) => {
-    title = 'video';
-    execSync('ytdl "' + link + '" > videos/' + title + '.mp4');
-      navigate('file://' + __dirname + '/player.html');
-  }
-  </script>
+<script src="js/main.js"></script>
 </html>
