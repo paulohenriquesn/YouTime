@@ -1,5 +1,5 @@
 const execSync = require('child_process').execSync;
-
+var electron = require('electron');
 const {
   app,
   BrowserWindow,
@@ -37,8 +37,3 @@ app.on('ready',()=>{
   menu.setApplicationMenu(menu.buildFromTemplate(menuTemplate));
   windowApp.loadURL('file://' + __dirname + "/www/index.html");
 });
-
-// function to download video of youtube
-/*DownloadVideo = (link,title) => {
-  execSync('ytdl "' + link + '" > videos/' + title + '.mp4');
-}*/
