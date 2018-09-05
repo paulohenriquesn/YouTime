@@ -39,6 +39,6 @@ app.on('ready',()=>{
 });
 
 // function to download video of youtube
-DownloadVideo = (link,title) => {
+/*DownloadVideo = (link,title) => {
   execSync('ytdl "' + link + '" > videos/' + title + '.mp4');
-}
+}*/
