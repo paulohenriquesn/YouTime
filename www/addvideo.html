@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>YouTime</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  </head>
+  <style type="text/css">
+  * {margin:0}
+  body {
+    background-color: #17181b;
+  }
+  ::-webkit-scrollbar {
+    width:10px;
+  }
+  ::-webkit-scrollbar-track {
+      background: white;
+  }
+  ::-webkit-scrollbar-thumb {
+      background: #f53d7a;
+  }
+  .__video h3 {
+    color:white;
+  }
+  #videos li {
+      padding:10px 10px;
+      display: inline-block;
+      list-style: none;
+  }
+  </style>
+  <body>
+    <article class="content">
+      <center>
+      <nav id="headerInfo">
+        <hgroup>
+          <h1>YouTime - 0.01</h1>
+        </hgroup>
+      </nav>
+      <hr>
+    </center>
+      <form>
+        <center>
+          <input type="text" id="url" placeholder="Youtube URL"/><br>
+          <input type="text" id="name" placeholder="Name"/><br>
+          <input type="text" id="iurl" placeholder="Image URL"/><br>
+          <button class="btn btn-success" onclick="create(document.getElementById('url').value,document.getElementById('name').value,document.getElementById('iurl').value)">Add</button>
+        </center>
+      </form>
+    </article>
+  </body>
+<script>
+var electron = require('electron');
+var fs = require('fs');
+var sql = require("./sql.js");
+var filebuffer = fs.readFileSync('db.db');
+var db = new sql.Database(filebuffer);
+function navigate(url)
+{
+var window = electron.remote.getCurrentWindow();
+window.loadURL(url);
+}
+function create(url,name,image){
+  db.run("INSERT INTO movie VALUES (?,?,?)",[name,image,url]);
+  var data = db.export();
+  var buffer = new Buffer(data);
+  fs.writeFileSync("db.db", buffer);
+  db.close();
+  navigate('file://' + __dirname + '/index.html');
+}
+</script>
+</html>

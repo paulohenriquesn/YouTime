@@ -27,10 +27,21 @@ app.on('ready',()=>{
     },
 
     {
-      label:"My Playlist",
+      label:"Home",
       click: () => {
-
+        windowApp.loadURL('file://' + __dirname + "/www/index.html");
       }
+    },
+    {
+      label: "Functions",
+      submenu:[
+        {
+          label:"Add Video",
+          click: () => {
+            windowApp.loadURL('file://' + __dirname + "/www/addvideo.html");
+          }
+        }
+      ]
     }
 
   ];
